@@ -1,0 +1,30 @@
+{
+  "version": "0.1.19",
+  "description": "",
+  "suggest": {
+    "autohotkey": "extras/autohotkey"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/LGUG2Z/komorebi/releases/download/v0.1.19/komorebi-0.1.19-x86_64-pc-windows-msvc.zip",
+      "hash": "c588fa176ef0a26ae8543701cd955a00587a49bf677061837dd6e8707de68016"
+    }
+  },
+  "pre_install": [
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.19/komorebic.lib.ahk  -OutFile $dir/komorebic.lib.ahk",
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.19/komorebi.generated.ahk  -OutFile $dir/komorebic.generated.ahk",
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.19/komorebi.sample.ahk  -OutFile $dir/komorebi.ahk"
+  ],
+  "bin": [
+    "komorebi.exe",
+    "komorebic.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/LGUG2Z/komorebi/releases/download/v$version/komorebi-$version-x86_64-pc-windows-msvc.zip"
+      }
+    }
+  }
+}

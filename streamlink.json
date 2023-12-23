@@ -1,0 +1,47 @@
+{
+    "version": "6.3.1-1",
+    "description": "",
+    "notes": "config file: '$dir\\config'",
+    "suggest": {
+        "ffmpeg": "ffmpeg",
+        "VLC Player": "extras/vlc"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/streamlink/windows-builds/releases/download/6.3.1-1/streamlink-6.3.1-1-py311-x86_64.zip",
+            "hash": "c6312f9b9f90d0fc8bbc4327e91ddc32dd1ef39e61035d61d03137b7ae1b9899",
+            "extract_dir": "streamlink-6.3.1-1-py311-x86_64"
+        }
+    },
+    "pre_install": [
+        "if (!(Test-Path \"$persist_dir\\config\")) {",
+        "    if (Test-Path \"$env:APPDATA\\streamlink\\config\") {",
+        "        info 'Copying existing ''config'' from ''%APPDATA%\\streamlink\\config'''",
+        "        Copy-Item \"$env:APPDATA\\streamlink\\config\" \"$dir\\config\"",
+        "    } else {",
+        "        New-Item \"$dir\\config\" | Out-Null",
+        "    }",
+        "}"
+    ],
+    "bin": [
+        [
+            "bin\\streamlink.exe",
+            "streamlink",
+            "--ffmpeg-ffmpeg \"$dir\\ffmpeg\\ffmpeg.exe\" --config \"$dir\\config\" --plugin-dirs \"$env:APPDATA\\streamlink\\plugins\""
+        ],
+        "bin\\streamlinkw.exe"
+    ],
+    "persist": "config",
+    "checkver": {
+        "url": "https://github.com/streamlink/windows-builds/releases/",
+        "regex": "tree/([\\d.\\-]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/streamlink/windows-builds/releases/download/$version/streamlink-$version-py311-x86_64.zip",
+                "extract_dir": "streamlink-$version-py311-x86_64"
+            }
+        }
+    }
+}

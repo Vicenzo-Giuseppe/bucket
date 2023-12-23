@@ -1,0 +1,29 @@
+{
+    "version": "1.16.0",
+    "description": "",
+    "notes": [
+        ""
+    ],
+    "suggest": {
+        "vcredist": "extras/vcredist2022"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/starship/starship/releases/download/v1.16.0/starship-x86_64-pc-windows-msvc.zip",
+            "hash": "64aacf6ad851b60e18f31582b37022dbc0d37c7062d3d7dfd7bd2343051ce199"
+        }
+           },
+    "bin": "starship.exe",
+    "pre_install" : [
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/Vicenzo-Giuseppe/starship/main/starship.toml -OutFile $dir/prompt.toml"
+    ],
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/starship/starship/releases/download/v$version/starship-x86_64-pc-windows-msvc.zip"
+                    },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    }
+}

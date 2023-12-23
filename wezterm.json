@@ -1,0 +1,26 @@
+{
+  "version": "nightly",
+  "description": "",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/wez/wezterm/releases/download/nightly/WezTerm-windows-nightly.zip"
+    }
+  },
+  "installer": {
+    "script": [
+      "$foldername = (Get-Item $dir\\WezTerm-windows-*).Name",
+      "Move-Item $dir\\$foldername\\* $dir",
+      "Remove-Item $dir\\$foldername",
+      "git clone https://codeberg.org/Vicenzo/wezterm $cachedir/wezterm",
+      "Move-Item $cachedir\\wezterm\\* $dir",
+      "Remove-Item -Recurse -Force -Confirm:$false $cachedir\\wezterm"
+    ]
+  },
+  "bin": "wezterm.exe",
+  "shortcuts": [
+    [
+      "wezterm.exe",
+      "WezTerm"
+    ]
+  ]
+}
